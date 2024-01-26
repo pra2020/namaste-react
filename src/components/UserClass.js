@@ -8,17 +8,17 @@ class UserClass extends React.Component{
   constructor(props){
     // to inherit the properties of parent class and access the this keyword inside the class
 
-    console.log("Child Constructor");
-
+    
     super(props);
     this.state = {
       count: 0,
     };
     console.log(props);
+    console.log(this.props.name,"Child Constructor");
   }
 
   componentDidMount() {
-    console.log("child compDidMount");
+    console.log(this.props.name,"child compDidMount");
 
     // api call
   }
@@ -26,12 +26,12 @@ class UserClass extends React.Component{
   // render is used to display this jsx into ui
   render() {
 
-    console.log("Child Render");
-
+    
     //destructuring
     const { name, location } = this.props;
     const { count, count2 } = this.state;
-
+    
+    console.log(name,"Child Render");
     return<div className="user-card">
     <h1>Count: {count}</h1>  
     <button onClick={() => {
