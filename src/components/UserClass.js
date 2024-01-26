@@ -1,9 +1,15 @@
 import React from "react";
 
 class UserClass extends React.Component{
+
+  // first constructor is called and then render method is called and tehn compDidMount is called
+
   // props are recieved in constructor
   constructor(props){
     // to inherit the properties of parent class and access the this keyword inside the class
+
+    console.log("Child Constructor");
+
     super(props);
     this.state = {
       count: 0,
@@ -11,8 +17,16 @@ class UserClass extends React.Component{
     console.log(props);
   }
 
+  componentDidMount() {
+    console.log("child compDidMount");
+
+    // api call
+  }
+
   // render is used to display this jsx into ui
   render() {
+
+    console.log("Child Render");
 
     //destructuring
     const { name, location } = this.props;
