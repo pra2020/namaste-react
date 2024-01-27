@@ -11,36 +11,47 @@ class UserClass extends React.Component{
     
     super(props);
     this.state = {
-      count: 0,
+      userInfo: {
+        login: "Dummy",
+        id: "Default",
+        avatar_url: ""
+      }
     };
     console.log(props);
-    console.log(this.props.name,"Child Constructor");
+    // console.log(this.props.name,"Child Constructor");
   }
 
-  componentDidMount() {
-    console.log(this.props.name,"child compDidMount");
-
+  async componentDidMount() {
+    // console.log(this.props.name,"child compDidMount");
     // api call
+    const data = await fetch("https://api.github.com/users/pra2020");
+    const json = await data.json();
+
+    console.log(json);
+    this.setState({
+      userInfo: json
+    })
+  }
+
+  componentDidUpdate() {
+    console.log("yyy");
+  }
+
+  componentWillUnmount() {
+    console.log("xxx");
   }
 
   // render is used to display this jsx into ui
   render() {
 
-    
     //destructuring
-    const { name, location } = this.props;
-    const { count, count2 } = this.state;
+    const { login, id, avatar_url } = this.state.userInfo;
     
-    console.log(name,"Child Render");
+    // console.log(name,"Child Render");
     return<div className="user-card">
-    <h1>Count: {count}</h1>  
-    <button onClick={() => {
-      this.setState({
-        count : this.state.count + 1
-      })
-    }}>Count Increase</button>
-    <h2>Name: {name}</h2>
-    <h2>Location: {location}</h2>
+    <img src={avatar_url}/>
+    <h2>Name: {login}</h2>
+    <h2>Location: {id}</h2>
     <h2>Contact: @pranav</h2>
   </div>
   }
