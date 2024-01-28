@@ -17,7 +17,6 @@ class UserClass extends React.Component{
         avatar_url: ""
       }
     };
-    console.log(props);
     // console.log(this.props.name,"Child Constructor");
   }
 
@@ -26,8 +25,6 @@ class UserClass extends React.Component{
     // api call
     const data = await fetch("https://api.github.com/users/pra2020");
     const json = await data.json();
-
-    console.log(json);
     this.setState({
       userInfo: json
     })
