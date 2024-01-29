@@ -3,6 +3,8 @@ import Shimmer from "./Shimmer";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import { useContext } from "react";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -36,6 +38,8 @@ const Body = () => {
 
   if (onlineStatus === false) return <h1>You are offline</h1>;
 
+  const { loggedInUser ,setUserName } = useContext(UserContext);
+
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
@@ -64,7 +68,7 @@ const Body = () => {
           </button>
         </div>
         <div className="search m-4 p-4 flex items-center">
-          <button
+          {/* <button
             className="px-4 py-2 bg-gray-100 rounded-lg"
             onClick={() => {
               // console.log("Btn Clicked");
@@ -76,7 +80,9 @@ const Body = () => {
             }}
           >
             Top Rated Restaurants
-          </button>
+          </button> */}
+          <label>UserName: </label>
+          <input className="border border-black p-2"  value={loggedInUser} onChange={(e) => setUserName(e.target.value)}/>
         </div>
       </div>
       <div className="flex flex-wrap">
