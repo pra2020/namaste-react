@@ -1,7 +1,18 @@
 import React from "react";
 import { CON_URL } from "../utils/constants";
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice"; 
 
 const ItemsList = ({ items }) => {
+
+  // dispatch function from useDispatch Hook
+  const dispatch = useDispatch();
+
+  const handleAddItem = (item) => {
+    // dispatch an action: this is action.payload
+    dispatch(addItem(item))
+  }
+
   console.log(items);
   return (
     <div>
@@ -24,7 +35,7 @@ const ItemsList = ({ items }) => {
           </div>
           <div className="w-3/12 p-4">
             <div>
-              <button className="p-2 mx-16 rounded-lg bg-black shadow-lg absolute text-white">
+              <button className="p-2 mx-16 rounded-lg bg-black shadow-lg absolute text-white" onClick={() => {handleAddItem(item)}}>
                 Add+
               </button>
             </div>
